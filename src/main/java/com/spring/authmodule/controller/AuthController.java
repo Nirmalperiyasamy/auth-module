@@ -43,17 +43,13 @@ public class AuthController {
             userDetails = userImplementation.userLogin(dto);
 
             return ResponseEntity.ok("login successfully");
-        } catch (ArithmeticException errorMessage) {
-
-            return ResponseEntity.badRequest().body(errorMessage.getMessage());
 
         } catch (Exception errorMessage) {
-
             return ResponseEntity.badRequest().body(errorMessage.getMessage());
         }
     }
 
-    @GetMapping("/all")
+    @GetMapping(ALL)
     public List<UserDetails> getAll(@RequestBody UserDto dto) {
         return userImplementation.getAll();
     }
