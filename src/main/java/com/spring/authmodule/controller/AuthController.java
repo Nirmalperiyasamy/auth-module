@@ -36,7 +36,6 @@ public class AuthController {
             return ResponseEntity.badRequest().body(e.getMessage());
         }
     }
-
     @PostMapping(LOGIN)
     public ResponseEntity<?> userLogin(@RequestBody @Valid UserDto dto) {
         try {
