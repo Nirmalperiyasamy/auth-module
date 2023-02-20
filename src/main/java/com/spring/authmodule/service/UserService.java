@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface UserService {
 
-    UserDto addRegister(UserDto user) throws Exception;
+    UserDto addUser(UserDto user) throws Exception;
 
     List<UserDetails> getAll();
 

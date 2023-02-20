@@ -2,7 +2,7 @@ package com.spring.authmodule.service;
 
 import com.spring.authmodule.dao.UserDetails;
 import com.spring.authmodule.dto.UserDto;
-import com.spring.authmodule.repository.AuthModule;
+import com.spring.authmodule.repository.UserRepo;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,22 +10,22 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class UserImplementation implements UserService {
+public class UserImpl implements UserService {
     @Autowired
-    private AuthModule authModule;
+    private UserRepo userRepo;
 
     public boolean isUsernameExist(String userName) {
-        return authModule.existsByUserName(userName);
+        return userRepo.existsByUserName(userName);
     }
 
     @Override
-    public UserDto addRegister(UserDto user) throws Exception {
+    public UserDto addUser(UserDto user) throws Exception {
         if (isUsernameExist(user.getUserName())) {
             throw new Exception("user alredy exist");
         } else {
             UserDetails entity = new UserDetails();
             BeanUtils.copyProperties(user, entity);
-            entity = authModule.save(entity);
+            entity = userRepo.save(entity);
             BeanUtils.copyProperties(entity, user);
 
             return user;
@@ -35,25 +35,19 @@ public class UserImplementation implements UserService {
 
     @Override
     public List<UserDetails> getAll() {
-        List<UserDetails> emp = authModule.findAll();
-
-        return emp;
+        return userRepo.findAll();
     }
 
     @Override
     public UserDto userLogin(UserDto dto) throws Exception {
         if (isUsernameExist(dto.getUserName())) {
-            UserDetails user = authModule.findByUserName(dto.getUserName());
+            UserDetails user = userRepo.findByUserName(dto.getUserName());
             if (user.getPassword().equals(dto.getPassword())) {
-
                 return dto;
-
             } else {
-
                 throw new ArithmeticException("Wrong password");
             }
         } else {
-
             throw new Exception("user not registered");
         }
     }
