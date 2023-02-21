@@ -2,12 +2,11 @@ package com.spring.authmodule.dao;
 
 import lombok.Getter;
 import lombok.Setter;
-import lombok.Value;
 
 import javax.persistence.*;
 
 @Entity
-@Table(name = "demo")
+@Table(name = "authmodule")
 @Getter
 @Setter
 
@@ -22,4 +21,5 @@ public class UserDetails {
 
     @Enumerated(EnumType.STRING)
     private Status status;
+
 }

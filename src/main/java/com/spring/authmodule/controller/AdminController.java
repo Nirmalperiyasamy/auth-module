@@ -22,21 +22,15 @@ public class AdminController {
         return adminImpl.getAll();
     }
 
-    @PutMapping("/{username}")
+    @PutMapping(USERNAME)
     public ResponseEntity<?> updateUser(@PathVariable String username, @RequestBody UserDto dto) {
         dto = adminImpl.updateUser(username, dto);
         return ResponseEntity.ok(dto);
     }
 
-    @GetMapping("/")
-    public UserDetails admin() {
-        return adminImpl.admin();
-    }
-
-    @GetMapping("/{username}")
+    @GetMapping(USERNAME)
     public ResponseEntity<?> getByName(@PathVariable String username) {
         return ResponseEntity.ok(adminImpl.getByusername(username));
     }
-
 
 }

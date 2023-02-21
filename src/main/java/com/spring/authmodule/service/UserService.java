@@ -7,8 +7,8 @@ import java.util.List;
 
 public interface UserService {
 
-    UserDto addUser(UserDto user) throws Exception;
+    UserDto addUser(UserDto user) ;
 
-    UserDto userLogin(UserDto dto) throws Exception;
+    UserDto userLogin(UserDto dto) ;
 
 }

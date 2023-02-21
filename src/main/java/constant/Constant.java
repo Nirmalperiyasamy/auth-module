@@ -6,4 +6,5 @@ public class Constant {
     public static final String LOGIN = "/login";
     public static final String ALL = "/all";
     public static final String ADMIN="/api/admin";
+    public static final String USERNAME="/{username}";
 }
