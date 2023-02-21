@@ -1,6 +1,6 @@
 package com.spring.authmodule.dao;
 
-public enum Status {
+public enum Role {
     YES,
     NO
 }

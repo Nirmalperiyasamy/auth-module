@@ -6,10 +6,9 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "authmodule")
+@Table(name = "userdetail")
 @Getter
 @Setter
-
 public class UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -20,6 +19,6 @@ public class UserDetails {
     private String password;
 
     @Enumerated(EnumType.STRING)
-    private Status status;
+    private Role role;
 
 }

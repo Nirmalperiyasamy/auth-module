@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 import static constant.Constant.*;
@@ -18,12 +19,12 @@ public class AdminController {
     private AdminImpl adminImpl;
 
     @GetMapping(ALL)
-    public List<UserDetails> getAll(@RequestBody UserDto dto) {
-        return adminImpl.getAll();
+    public ResponseEntity<?> getAll() {
+        return ResponseEntity.ok(adminImpl.getAll());
     }
 
     @PutMapping(USERNAME)
-    public ResponseEntity<?> updateUser(@PathVariable String username, @RequestBody UserDto dto) {
+    public ResponseEntity<?> updateUser(@PathVariable String username, @Valid @RequestBody UserDto dto) {
         dto = adminImpl.updateUser(username, dto);
         return ResponseEntity.ok(dto);
     }

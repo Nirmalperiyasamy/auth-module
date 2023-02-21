@@ -1,6 +1,6 @@
 package com.spring.authmodule.bootstrap;
 
-import com.spring.authmodule.dao.Status;
+import com.spring.authmodule.dao.Role;
 import com.spring.authmodule.dao.UserDetails;
 import com.spring.authmodule.repository.AdminRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,12 +15,11 @@ public class Bootstrap {
 
     @PostConstruct
     private void postConstructor() {
-        if (isUsernameExist("Gokul")) {
-        } else {
+        if (!isUsernameExist("Gokul")) {
             UserDetails admin = new UserDetails();
             admin.setUsername("Gokul");
             admin.setPassword("1234");
-            admin.setStatus(Status.YES);
+            admin.setRole(Role.YES);
             adminRepo.save(admin);
         }
 

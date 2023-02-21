@@ -1,6 +1,6 @@
 package com.spring.authmodule.service;
 
-import com.spring.authmodule.dao.Status;
+import com.spring.authmodule.dao.Role;
 import com.spring.authmodule.dao.UserDetails;
 import com.spring.authmodule.dto.UserDto;
 import com.spring.authmodule.exceptionhandler.UserAlreadyExist;
@@ -23,32 +23,31 @@ public class UserImpl implements UserService {
 
     @Override
     public UserDto addUser(UserDto user) {
-        if (isUsernameExist(user.getUsername())) {
-            throw new UserAlreadyExist();
-        } else {
-            UserDetails entity = new UserDetails();
-            entity.setStatus(Status.NO);
-            BeanUtils.copyProperties(user, entity);
-            entity = userRepo.save(entity);
-            BeanUtils.copyProperties(entity, user);
+        if (isUsernameExist(user.getUsername())) throw new UserAlreadyExist();
 
-            return user;
-        }
+        UserDetails entity = new UserDetails();
+        entity.setRole(Role.NO);
+        BeanUtils.copyProperties(user, entity);
+        entity = userRepo.save(entity);
+        BeanUtils.copyProperties(entity, user);
+
+        return user;
+
     }
 
 
     @Override
     public UserDto userLogin(UserDto dto) {
-        if (isUsernameExist(dto.getUsername())) {
-            UserDetails user = userRepo.findByUsername(dto.getUsername());
-            if (user.getPassword().equals(dto.getPassword())) {
-                return dto;
-            } else {
-                throw new WrongPassword();
-            }
-        } else {
-            throw new UserNotRegistered();
+        UserDetails user = getUserDetail(dto.getId());
+        if (user.getPassword().equals(dto.getPassword())) {
+            return dto;
         }
+        throw new WrongPassword();
     }
+
+    public UserDetails getUserDetail(Integer id) {
+        return userRepo.findById(id).orElseThrow(UserNotRegistered::new);
+    }
+
 
 }

@@ -23,7 +23,7 @@ public class AuthController {
     @Autowired
     private UserImpl userImplementation;
 
-    @GetMapping("ping")
+    @RequestMapping("ping")
     public ResponseEntity<?> ping() {
         return ResponseEntity.ok("PONG!");
     }
@@ -31,7 +31,6 @@ public class AuthController {
     @PostMapping(ADD)
     public ResponseEntity<?> addUser(@RequestBody @Valid UserDto dto) {
 
-        log.info("Controller add register ");
         UserDto userDetail = new UserDto();
         userDetail = userImplementation.addUser(dto);
         return ResponseEntity.ok(userDetail);
