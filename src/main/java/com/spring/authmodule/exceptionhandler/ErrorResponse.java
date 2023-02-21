@@ -1,28 +1,30 @@
 package com.spring.authmodule.exceptionhandler;
 
+import org.springframework.http.HttpStatus;
+
 import java.util.List;
 
 public class ErrorResponse {
-    private String code;
+    private HttpStatus code;
     private String message;
     private List<String> errors;
 
-    public ErrorResponse(String code, String message) {
+    public ErrorResponse(HttpStatus code, String message) {
         this.code = code;
         this.message = message;
     }
 
-    public ErrorResponse(String code, String message, List<String> errors) {
+    public ErrorResponse(HttpStatus code, String message, List<String> errors) {
         this.code = code;
         this.message = message;
         this.errors = errors;
     }
 
-    public String getCode() {
+    public HttpStatus getCode() {
         return code;
     }
 
-    public void setCode(String code) {
+    public void setCode(HttpStatus code) {
         this.code = code;
     }
 

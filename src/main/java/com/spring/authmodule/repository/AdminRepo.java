@@ -5,8 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepo extends JpaRepository<UserDetails, Integer> {
-    boolean existsByUsername(String userName);
-
-    UserDetails findByUsername(String userName);
+public interface AdminRepo extends JpaRepository<UserDetails,Integer>{
+    UserDetails findByusername(String username);
 }
