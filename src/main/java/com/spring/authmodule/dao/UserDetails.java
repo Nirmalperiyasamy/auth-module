@@ -6,7 +6,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "demo")
+@Table(name = "userdetail")
 @Getter
 @Setter
 public class UserDetails {
@@ -14,8 +14,11 @@ public class UserDetails {
     @GeneratedValue(strategy = GenerationType.AUTO)
 
     private int id;
-    private String userName;
+    private String username;
+
     private String password;
 
+    @Enumerated(EnumType.STRING)
+    private Role role;
 
 }
