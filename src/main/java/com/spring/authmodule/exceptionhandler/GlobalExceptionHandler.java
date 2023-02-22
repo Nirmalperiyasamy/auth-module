@@ -23,18 +23,9 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(errorResponse, HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(value = UserAlreadyExist.class)
-    public ResponseEntity<?> exception(UserAlreadyExist exception) {
-        return ResponseEntity.badRequest().body("user already exist");
+    @ExceptionHandler(value = CustomException.class)
+    public ResponseEntity<?> exception(CustomException exception) {
+        return ResponseEntity.badRequest().body(exception.getMessage());
     }
 
-    @ExceptionHandler(value = WrongPassword.class)
-    public ResponseEntity<?> exception(WrongPassword exception) {
-        return ResponseEntity.badRequest().body("Wrong password");
-    }
-
-    @ExceptionHandler(value = UserNotRegistered.class)
-    public ResponseEntity<?> exception(UserNotRegistered exception) {
-        return ResponseEntity.badRequest().body("user not registered");
-    }
 }
