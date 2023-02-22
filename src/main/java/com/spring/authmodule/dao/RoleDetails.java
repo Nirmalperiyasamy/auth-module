@@ -6,17 +6,14 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
+@Table(name = "role")
 @Getter
 @Setter
-public class UserDetails {
+public class RoleDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-
     private int id;
-    private String username;
 
-    private String password;
-
-    @OneToOne
-    private RoleDetails role;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 }

@@ -23,6 +23,11 @@ public class AdminController {
         return ResponseEntity.ok(adminImpl.getAll());
     }
 
+    @RequestMapping()
+    public ResponseEntity<?> ping() {
+        return ResponseEntity.ok("PONG!");
+    }
+
     @PutMapping(USERNAME)
     public ResponseEntity<?> updateUser(@PathVariable String username, @Valid @RequestBody UserDto dto) {
         dto = adminImpl.updateUser(username, dto);

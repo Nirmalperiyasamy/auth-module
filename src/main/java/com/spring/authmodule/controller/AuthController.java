@@ -23,9 +23,9 @@ public class AuthController {
     @Autowired
     private UserImpl userImplementation;
 
-    @RequestMapping("ping")
+    @RequestMapping()
     public ResponseEntity<?> ping() {
-        return ResponseEntity.ok("PONG!");
+        return ResponseEntity.ok("USER PONG!");
     }
 
     @PostMapping(ADD)
@@ -42,6 +42,5 @@ public class AuthController {
         UserDto userDetails = userImplementation.userLogin(dto);
 
         return ResponseEntity.ok("login successfully");
-
     }
 }
